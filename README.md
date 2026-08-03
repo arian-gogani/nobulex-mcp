@@ -1,3 +1,7 @@
+> **Prior direction, kept rather than deleted.** Nobulex is now the independent reliability registry for agent tools: [nobulex-registry](https://github.com/arian-gogani/nobulex-registry) and [nobulex.com](https://nobulex.com). This repository is from the covenant and receipts era of the same name. Nothing below is retracted. It is simply not what is being built now.
+
+---
+
 # @nobulex/mcp-server
 
 Nobulex MCP compliance server — covenant rule checking, hash-chained audit logs, and integrity verification for any MCP-compatible agent.
