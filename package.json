@@ -1,7 +1,7 @@
 {
   "name": "@nobulex/mcp-server",
   "version": "1.0.0",
-  "description": "Nobulex MCP compliance server — covenant rule checking, hash-chained audit logs, and integrity verification for any MCP-compatible agent.",
+  "description": "Prior direction, kept rather than deleted: see nobulex-registry and nobulex.com for the current work. Nobulex MCP compliance server, covenant rule checking, hash-chained audit logs, and integrity verification for any MCP-compatible agent.",
   "type": "module",
   "main": "dist/index.js",
   "bin": {
