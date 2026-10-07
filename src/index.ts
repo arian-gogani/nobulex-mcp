@@ -98,7 +98,7 @@ server.tool(
 // --- Tool: verify_log ---
 server.tool(
   "verify_log",
-  "Independently verify the integrity of the hash-chained audit log. Detects any tampering.",
+  "Recompute this server's hash-chained audit log and report the first entry that does not match. Detects edits by a party that does not hold the whole log. It does not detect a wholesale rewrite by the holder, and it is not an independent check: this verifier ships in the same package as the producer.",
   {},
   async () => {
     const result = auditLog.verify();

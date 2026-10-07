@@ -1,4 +1,6 @@
-> **Prior direction, kept rather than deleted.** Nobulex is now the independent reliability registry for agent tools: [nobulex-registry](https://github.com/arian-gogani/nobulex-registry) and [nobulex.com](https://nobulex.com). This repository is from the covenant and receipts era of the same name. Nothing below is retracted. It is simply not what is being built now.
+> **Prior direction, kept rather than deleted.** This repository is from the covenant and receipts era of the name. Current work is a decision-integrity gateway for automated financial actions: [nobulex.com](https://nobulex.com). Nothing below is retracted. It is simply not what is being built now.
+>
+> This banner previously described the reliability registry as the current direction and called it independent. The registry is itself now a prior direction, and nothing here has been independently verified by anyone.
 
 ---
 

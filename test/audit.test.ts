@@ -57,4 +57,43 @@ describe("AuditLog", () => {
     const entry = log.append("check_role", params, { allowed: true, reason: "ok" });
     expect(entry.params).toEqual(params);
   });
+
+  it("a wholesale rewrite by the log's own holder verifies clean", () => {
+    // The verify_log tool description said "Detects any tampering". This is
+    // the counterexample. verify() walks this.entries checking linkage and
+    // recomputed hashes, so an actor who can replace the WHOLE array simply
+    // re-chains it and every check passes. A hash chain detects edits by a
+    // party holding only part of the log. It does not bound the holder.
+    const real = new AuditLog();
+    real.append("transfer_funds", { amount: 1000000 }, { allowed: true, reason: "ok" });
+    real.append("delete_user", {}, { allowed: false, reason: "forbidden" });
+    expect(real.verify().valid).toBe(true);
+
+    const rewritten = new AuditLog();
+    rewritten.append("read_data", {}, { allowed: true, reason: "ok" });
+
+    expect(rewritten.verify()).toEqual({ valid: true, entries: 1 });
+    expect(rewritten.getAll()[0]!.action).toBe("read_data");
+    expect(
+      rewritten.getAll().some((e) => e.action === "transfer_funds"),
+    ).toBe(false);
+  });
+
+  it("detects an edit to a single entry, which is what it does bound", () => {
+    // The control. Without this the test above could be satisfied by a verify()
+    // that never returns false at all.
+    const log = new AuditLog();
+    log.append("a", {}, { allowed: true, reason: "ok" });
+    log.append("b", {}, { allowed: true, reason: "ok" });
+
+    const entries = log.getAll();
+    (log as unknown as { entries: typeof entries }).entries = [
+      entries[0]!,
+      { ...entries[1]!, action: "edited" },
+    ];
+
+    const result = log.verify();
+    expect(result.valid).toBe(false);
+    expect(result.error).toContain("hash mismatch");
+  });
 });
